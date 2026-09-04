@@ -1,0 +1,13 @@
+{
+  "schemaVersion": 1,
+  "id": "io.github.dataknox.keyboard-backlight",
+  "name": "Keyboard Backlight",
+  "version": "0.1.0",
+  "author": "DataKnox",
+  "license": "MIT",
+  "description": "macOS-style keyboard backlight for Apple Silicon MacBooks: lights the keys only in a dark room, turns them off after a short idle, and back on at the first key or touch.",
+  "kinds": ["service"],
+  "entryPoints": {
+    "service": "Service.qml"
+  }
+}
