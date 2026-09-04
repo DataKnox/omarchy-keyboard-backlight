@@ -11,11 +11,8 @@ The policy lives in one bash script, `bin/omarchy-keyboard-backlight`; the QML s
 ## Install
 
 ```bash
-git clone https://github.com/DataKnox/omarchy-keyboard-backlight ~/.config/omarchy/plugins/io.github.dataknox.keyboard-backlight
-omarchy plugin enable io.github.dataknox.keyboard-backlight
+omarchy plugin add https://github.com/DataKnox/omarchy-keyboard-backlight.git --enable
 ```
-
-Or `omarchy plugin add https://github.com/DataKnox/omarchy-keyboard-backlight --enable`.
 
 On hardware without an ambient light sensor or `kbd_backlight` LED the service logs one line and does nothing.
 
@@ -36,7 +33,7 @@ Everything used is already part of an Omarchy install:
 - Quickshell's `IdleMonitor`, provided by the Omarchy shell
 - An ambient light sensor exposed through IIO with `als` in its name. On Apple Silicon MacBooks that is `aop-sensors-als` from the Asahi kernel; no extra driver or package is needed.
 
-The plugin needs no sudo and touches no system files. It writes only its own state under `~/.local/state/omarchy/keyboard-backlight/` and reads the optional config file above.
+The plugin runs entirely as your user, asks for no elevated privileges, and touches no system files. It writes only its own state under `~/.local/state/omarchy/keyboard-backlight/` and reads the optional config file above.
 
 ## Settings
 
