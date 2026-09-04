@@ -19,6 +19,25 @@ Or `omarchy plugin add https://github.com/DataKnox/omarchy-keyboard-backlight --
 
 On hardware without an ambient light sensor or `kbd_backlight` LED the service logs one line and does nothing.
 
+## Remove
+
+```bash
+omarchy plugin remove io.github.dataknox.keyboard-backlight
+rm -rf ~/.local/state/omarchy/keyboard-backlight ~/.config/omarchy/keyboard-backlight.conf
+```
+
+The keyboard backlight keeps whatever level it had when the plugin was removed; adjust it with the brightness keys as usual.
+
+## Dependencies
+
+Everything used is already part of an Omarchy install:
+
+- `brightnessctl` to write the LED level (Omarchy's own `omarchy brightness keyboard` uses it too)
+- Quickshell's `IdleMonitor`, provided by the Omarchy shell
+- An ambient light sensor exposed through IIO with `als` in its name. On Apple Silicon MacBooks that is `aop-sensors-als` from the Asahi kernel; no extra driver or package is needed.
+
+The plugin needs no sudo and touches no system files. It writes only its own state under `~/.local/state/omarchy/keyboard-backlight/` and reads the optional config file above.
+
 ## Settings
 
 `~/.config/omarchy/keyboard-backlight.conf` (all optional):
