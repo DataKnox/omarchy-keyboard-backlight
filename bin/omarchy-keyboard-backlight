@@ -81,9 +81,9 @@ apply() {
 update_dark() {
   local lux
   lux=$(cat "$ALS" 2>/dev/null) || return
-  if (( dark && lux > BRIGHT_LUX )); then
+  if (( dark )) && awk -v lux="$lux" -v threshold="$BRIGHT_LUX" 'BEGIN { exit !(lux > threshold) }'; then
     dark=0
-  elif (( ! dark && lux < DARK_LUX )); then
+  elif (( ! dark )) && awk -v lux="$lux" -v threshold="$DARK_LUX" 'BEGIN { exit !(lux < threshold) }'; then
     dark=1
   fi
   echo "$dark" > "$STATE_DIR/dark"
